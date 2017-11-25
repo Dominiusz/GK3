@@ -12,7 +12,6 @@ namespace GK3
         public abstract class Color_space
         {
             public abstract Color ToRGB();
-            public abstract Color_space FromRGB(Color RGB_color);
         }
 
         public class CMYK:Color_space
@@ -79,18 +78,23 @@ namespace GK3
                 return Color.FromArgb(R, G, B);
             }
 
-            public override Color_space FromRGB(Color RGB_color)
+            public CMYK(Color RGB_color)
             {
                 double r = (double)RGB_color.R / 255;
                 double g = (double)RGB_color.G / 255;
                 double b = (double)RGB_color.B / 255;
 
-                double k = 1 - Math.Max(Math.Max(r, g), b);
-                double c = (1 - r - k) / (1 - k);
-                double m = (1 - g - k) / (1 - k);
-                double y = (1 - b - k) / (1 - k);
-
-                return new CMYK(c,m,y,k);
+                k = 1 - Math.Max(Math.Max(r, g), b);
+                if (Math.Abs(k-1)<0.001)
+                {
+                    c = m = y = 0;
+                }
+                else
+                {
+                    c = (1 - r - k) / (1 - k);
+                    m = (1 - g - k) / (1 - k);
+                    y = (1 - b - k) / (1 - k);
+                }
             }
         }
     }

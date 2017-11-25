@@ -148,6 +148,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.DecimalPlaces = 3;
             this.numericUpDown1.Location = new System.Drawing.Point(268, 23);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
@@ -162,6 +163,7 @@
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.DecimalPlaces = 3;
             this.numericUpDown2.Location = new System.Drawing.Point(268, 71);
             this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
@@ -176,6 +178,7 @@
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.DecimalPlaces = 3;
             this.numericUpDown3.Location = new System.Drawing.Point(268, 127);
             this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown3.Maximum = new decimal(new int[] {
@@ -737,6 +740,7 @@
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(208, 56);
             this.trackBar4.TabIndex = 10;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
             // 
             // label4
             // 
@@ -750,6 +754,7 @@
             // 
             // numericUpDown4
             // 
+            this.numericUpDown4.DecimalPlaces = 3;
             this.numericUpDown4.Location = new System.Drawing.Point(268, 178);
             this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDown4.Maximum = new decimal(new int[] {
@@ -760,6 +765,7 @@
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(160, 22);
             this.numericUpDown4.TabIndex = 11;
+            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // Form1
             // 
