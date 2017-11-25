@@ -36,20 +36,20 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        numericUpDown1.Value = trackBar1.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            numericUpDown1.Value = trackBar1.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
+                        {
 
-                        numericUpDown1.Value = (decimal) trackBar1.Value / 255;
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                    }
+                            numericUpDown1.Value = (decimal)trackBar1.Value / 255;
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -64,7 +64,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            numericUpDown1.Value = (decimal)trackBar1.Value / 255;
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -81,19 +86,19 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        numericUpDown2.Value = trackBar2.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            numericUpDown2.Value = trackBar2.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
-                        numericUpDown2.Value = (decimal) trackBar2.Value / 255;
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                    }
+                        {
+                            numericUpDown2.Value = (decimal)trackBar2.Value / 255;
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -108,7 +113,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            numericUpDown2.Value = (decimal)(((double)trackBar2.Value / 255 * 2 * YUV.U_max) - YUV.U_max);
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -125,21 +135,21 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        numericUpDown3.Value = trackBar3.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            numericUpDown3.Value = trackBar3.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
+                        {
 
-                        numericUpDown3.Value = (decimal) trackBar3.Value / 255;
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                            numericUpDown3.Value = (decimal)trackBar3.Value / 255;
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                            SetCMYKLabels();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -154,7 +164,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            numericUpDown3.Value = (decimal)(((double)trackBar3.Value / 255 * 2 * YUV.V_max) - YUV.V_max);
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -178,13 +193,13 @@ namespace GK3
                     //}
                     //    break;
                     case 1:
-                    {
-                        numericUpDown4.Value = (decimal) trackBar4.Value / 255;
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                        {
+                            numericUpDown4.Value = (decimal)trackBar4.Value / 255;
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                            SetCMYKLabels();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -199,7 +214,7 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        // CreateYUVLayout();
                         break;
                     case 7:
                         CreateLabLayout();
@@ -215,20 +230,19 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        trackBar1.Value = (int) numericUpDown1.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            trackBar1.Value = (int)numericUpDown1.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
-                        trackBar1.Value = (int) (numericUpDown1.Value * 255);
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                        {
+                            trackBar1.Value = (int)(numericUpDown1.Value * 255);
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -243,7 +257,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            trackBar1.Value = (int)(numericUpDown1.Value * 255);
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -259,20 +278,19 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        trackBar2.Value = (int) numericUpDown2.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            trackBar2.Value = (int)numericUpDown2.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
-                        trackBar2.Value = (int) (numericUpDown2.Value * 255);
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                        {
+                            trackBar2.Value = (int)(numericUpDown2.Value * 255);
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -287,7 +305,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            trackBar2.Value = (int)(((double)numericUpDown2.Value + YUV.U_max) / (2*YUV.U_max) * 255);
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -305,20 +328,19 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        trackBar3.Value = (int) numericUpDown3.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            trackBar3.Value = (int)numericUpDown3.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
-                        trackBar3.Value = (int) (numericUpDown3.Value * 255);
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                        {
+                            trackBar3.Value = (int)(numericUpDown3.Value * 255);
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -333,7 +355,12 @@ namespace GK3
                         CreateXYZLayout();
                         break;
                     case 6:
-                        CreateYUVLayout();
+                        {
+                            trackBar3.Value = (int)(((double)numericUpDown3.Value + YUV.V_max) / (2*YUV.V_max) * 255);
+                            current_color = label_color.BackColor =
+                                new YUV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 7:
                         CreateLabLayout();
@@ -349,20 +376,20 @@ namespace GK3
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                    {
-                        trackBar4.Value = (int) numericUpDown4.Value;
-                        current_color = label_color.BackColor =
-                            Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    }
+                        {
+                            trackBar4.Value = (int)numericUpDown4.Value;
+                            current_color = label_color.BackColor =
+                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+                        }
                         break;
                     case 1:
-                    {
-                        trackBar4.Value = (int) (numericUpDown4.Value * 255);
-                        current_color = label_color.BackColor =
-                            new CMYK((double) numericUpDown1.Value, (double) numericUpDown2.Value,
-                                (double) numericUpDown3.Value, (double) numericUpDown4.Value).ToRGB();
-                        SetCMYKLabels();
-                    }
+                        {
+                            trackBar4.Value = (int)(numericUpDown4.Value * 255);
+                            current_color = label_color.BackColor =
+                                new CMYK((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
+                            SetCMYKLabels();
+                        }
                         break;
                     case 2:
                         CreateYCbCrLayout();
@@ -418,6 +445,8 @@ namespace GK3
 
         }
 
+        #region CreatingLayouts
+
         private void CreateLabLayout()
         {
             //throw new NotImplementedException();
@@ -425,7 +454,39 @@ namespace GK3
 
         private void CreateYUVLayout()
         {
-            //throw new NotImplementedException();
+            Hide4Elements();
+
+            YUV YUV_color = new YUV(current_color);
+
+            label1.Text = "Y";
+            label2.Text = "U";
+            label3.Text = "V";
+
+            setting_tb_and_nup = true;
+
+            numericUpDown1.Maximum = 1;
+            numericUpDown2.Maximum = (decimal)YUV.U_max;
+            numericUpDown3.Maximum = (decimal)YUV.V_max;
+
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Minimum = (decimal)-YUV.U_max;
+            numericUpDown3.Minimum = (decimal)-YUV.V_max;
+
+            numericUpDown1.Increment = new decimal(0.01);
+            numericUpDown2.Increment = new decimal(0.01);
+            numericUpDown3.Increment = new decimal(0.01);
+
+
+            trackBar1.Value = (int)(YUV_color.Y * 255);
+            trackBar2.Value = (int)((YUV_color.U + YUV.U_max) / 2 * YUV.U_max * 255);
+            trackBar3.Value = (int)((YUV_color.V + YUV.V_max) / 2 * YUV.V_max * 255);
+
+            setting_tb_and_nup = false;
+
+            numericUpDown1.Value = (decimal)YUV_color.Y;
+            numericUpDown2.Value = (decimal)YUV_color.U;
+            numericUpDown3.Value = (decimal)YUV_color.V;
+
         }
 
         private void CreateXYZLayout()
@@ -472,6 +533,9 @@ namespace GK3
             numericUpDown3.Minimum = 0;
             numericUpDown4.Minimum = 0;
             numericUpDown1.Increment = new decimal(0.01);
+            numericUpDown2.Increment = new decimal(0.01);
+            numericUpDown3.Increment = new decimal(0.01);
+            numericUpDown4.Increment = new decimal(0.01);
 
             trackBar1.Value = (int)(CmykColor.C * 255);
             trackBar2.Value = (int)(CmykColor.M * 255);
@@ -487,30 +551,40 @@ namespace GK3
 
 
             SetCMYKLabels(CmykColor);
-            numericUpDown1_ValueChanged(null,null);
+            //numericUpDown1_ValueChanged(null,null);
 
         }
 
         private void CreateRGBLayout()
         {
+            setting_tb_and_nup = true;
             label1.Text = "R";
             label2.Text = "G";
             label3.Text = "B";
-            trackBar1.Maximum = 255;
-            trackBar2.Maximum = 255;
-            trackBar3.Maximum = 255;
-            trackBar1.Minimum = 0;
-            trackBar2.Minimum = 0;
-            trackBar3.Minimum = 0;
+
             numericUpDown1.Maximum = 255;
             numericUpDown2.Maximum = 255;
             numericUpDown3.Maximum = 255;
             numericUpDown1.Minimum = 0;
             numericUpDown2.Minimum = 0;
             numericUpDown3.Minimum = 0;
-            Hide4Elements();
 
+            numericUpDown1.Increment = 1;
+            numericUpDown2.Increment = 1;
+            numericUpDown3.Increment = 1;
+            setting_tb_and_nup = false;
+
+            numericUpDown1.Value = current_color.R;
+            numericUpDown2.Value = current_color.G;
+            numericUpDown3.Value = current_color.B;
+
+            trackBar1.Value = current_color.R;
+            trackBar2.Value = current_color.G;
+            trackBar3.Value = current_color.B;
+
+            Hide4Elements();
         }
+        #endregion
 
         private void Hide4Elements()
         {
@@ -520,7 +594,7 @@ namespace GK3
         }
 
         #region SettingLabels
-    
+
         private void SetLabels()
         {
             SetRGBLabels();
@@ -558,7 +632,11 @@ namespace GK3
 
         private void SetYUVLabels()
         {
-            //throw new NotImplementedException();
+            YUV yuvColor= new YUV(current_color);
+
+            label_YUV_Y.Text = "Y: " + yuvColor.Y.ToString("0.000");
+            label_YUV_U.Text = "U: " + yuvColor.U.ToString("0.000");
+            label_YUV_V.Text = "V: " + yuvColor.V.ToString("0.000");
         }
 
         private void SetXYZLabels()
