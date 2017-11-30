@@ -14,6 +14,60 @@ namespace GK3
             public abstract Color ToRGB();
         }
 
+        public class YCbCr : Color_space
+        {
+            private double y;
+            private double cb;
+            private double cr;
+
+
+            public double Y => y;
+
+            public double Cb => cb;
+
+            public double Cr => cr;
+
+            public YCbCr(double y, double cb, double cr)
+            {
+                if (y > 1 || y < 0 || cb < 0 || cb > 1 || cr < 0 || cr > 1)
+                    throw new ArgumentException();
+
+                this.y = y;
+                this.cb = cb;
+                this.cr = cr;
+            }
+
+            public YCbCr(Color RGB_color)
+            {
+                double r = (double)RGB_color.R / 255;
+                double g = (double)RGB_color.G / 255;
+                double b = (double)RGB_color.B / 255;
+
+                y = 0.299 * r + 0.587 * g + 0.114 * b;
+                cb = (b - y) / 1.772 + 0.5;
+                cr = (r - y) / 1.402 + 0.5;
+            }
+
+            public override Color ToRGB()
+            {
+                double U = (cb - 0.5) * 0.492 * 1.772;
+                double V = (cr - 0.5) * 0.877 * 1.402;
+
+                double r = Y + 1.14 * V;
+                double g = Y - 0.395 * U - 0.581 * V;
+                double b = Y + 2.033 * U;
+
+                if (r > 1) r = 1;
+                if (g > 1) g = 1;
+                if (b > 1) b = 1;
+                if (r < 0) r = 0;
+                if (g < 0) g = 0;
+                if (b < 0) b = 0;
+
+                return Color.FromArgb((int)(r * 255), (int)(g * 255), (int)(b * 255));
+            }
+        }
+
         public class YUV : Color_space
         {
             private double y;
