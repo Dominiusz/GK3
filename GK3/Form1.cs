@@ -26,6 +26,7 @@ namespace GK3
             label4.Visible = false;
             trackBar4.Visible = false;
             numericUpDown4.Visible = false;
+            SetLabels();
 
         }
 
@@ -60,10 +61,20 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            numericUpDown1.Value = (decimal)(trackBar1.Value * 360.0 / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            numericUpDown1.Value = (decimal)(trackBar1.Value * 360.0 / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -113,10 +124,20 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            numericUpDown2.Value = (decimal)(trackBar2.Value / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            numericUpDown2.Value = (decimal)(trackBar2.Value / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -169,10 +190,20 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            numericUpDown3.Value = (decimal)(trackBar3.Value / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            numericUpDown3.Value = (decimal)(trackBar3.Value / 255.0);
+                            current_color = label_color.BackColor =
+                                new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                    (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -199,13 +230,6 @@ namespace GK3
             {
                 switch (comboBox1.SelectedIndex)
                 {
-                    //case 0:
-                    //{
-                    //    numericUpDown1.Value = trackBar1.Value;
-                    //    current_color = label_color.BackColor =
-                    //        Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                    //}
-                    //    break;
                     case 1:
                         {
                             numericUpDown4.Value = (decimal)trackBar4.Value / 255;
@@ -215,20 +239,11 @@ namespace GK3
                             SetCMYKLabels();
                         }
                         break;
-                    case 2:
-                        //CreateYCbCrLayout();
-                        break;
-                    case 3:
-                        CreateHSVLayout();
-                        break;
                     case 4:
                         CreateHSLLayout();
                         break;
                     case 5:
                         CreateXYZLayout();
-                        break;
-                    case 6:
-                        // CreateYUVLayout();
                         break;
                     case 7:
                         CreateLabLayout();
@@ -267,10 +282,18 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            trackBar1.Value = (int)((double)numericUpDown1.Value / 360.0 * 255.0);
+                            current_color = label_color.BackColor = new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            trackBar1.Value = (int)((double)numericUpDown1.Value / 360.0 * 255.0);
+                            current_color = label_color.BackColor = new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -320,10 +343,18 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            trackBar2.Value = (int)((double)numericUpDown2.Value * 255.0);
+                            current_color = label_color.BackColor = new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            trackBar2.Value = (int)((double)numericUpDown2.Value * 255.0);
+                            current_color = label_color.BackColor = new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -375,10 +406,18 @@ namespace GK3
                         }
                         break;
                     case 3:
-                        CreateHSVLayout();
+                        {
+                            trackBar3.Value = (int)((double)numericUpDown3.Value * 255.0);
+                            current_color = label_color.BackColor = new HSV((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 4:
-                        CreateHSLLayout();
+                        {
+                            trackBar3.Value = (int)((double)numericUpDown3.Value * 255.0);
+                            current_color = label_color.BackColor = new HSL((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 5:
                         CreateXYZLayout();
@@ -420,20 +459,11 @@ namespace GK3
                             SetCMYKLabels();
                         }
                         break;
-                    case 2:
-                        //CreateYCbCrLayout();
-                        break;
-                    case 3:
-                        CreateHSVLayout();
-                        break;
                     case 4:
                         CreateHSLLayout();
                         break;
                     case 5:
                         CreateXYZLayout();
-                        break;
-                    case 6:
-                        //CreateYUVLayout();
                         break;
                     case 7:
                         CreateLabLayout();
@@ -525,12 +555,67 @@ namespace GK3
 
         private void CreateHSLLayout()
         {
-            //throw new NotImplementedException();
+            Hide4Elements();
+
+            label1.Text = "H";
+            label2.Text = "S";
+            label3.Text = "V";
+
+            HSL HSLColor = new HSL(current_color);
+            setting_tb_and_nup = true;
+
+            numericUpDown1.Maximum = 360;
+            numericUpDown2.Maximum = 1;
+            numericUpDown3.Maximum = 1;
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Minimum = 0;
+            numericUpDown3.Minimum = 0;
+            numericUpDown1.Increment = new decimal(1);
+            numericUpDown2.Increment = new decimal(0.01);
+            numericUpDown3.Increment = new decimal(0.01);
+
+            trackBar1.Value = (int)(HSLColor.H / 360 * 255);
+            trackBar2.Value = (int)(HSLColor.S * 255);
+            trackBar3.Value = (int)(HSLColor.L * 255);
+            numericUpDown1.Value = (decimal)(HSLColor.H);
+            numericUpDown2.Value = (decimal)(HSLColor.S);
+            numericUpDown3.Value = (decimal)(HSLColor.L);
+
+            setting_tb_and_nup = false;
+
+            SetHSLLabels();
         }
 
         private void CreateHSVLayout()
         {
-            //throw new NotImplementedException();
+            Hide4Elements();
+            label1.Text = "H";
+            label2.Text = "S";
+            label3.Text = "V";
+
+            HSV HSVColor = new HSV(current_color);
+            setting_tb_and_nup = true;
+
+            numericUpDown1.Maximum = 360;
+            numericUpDown2.Maximum = 1;
+            numericUpDown3.Maximum = 1;
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Minimum = 0;
+            numericUpDown3.Minimum = 0;
+            numericUpDown1.Increment = new decimal(1);
+            numericUpDown2.Increment = new decimal(0.01);
+            numericUpDown3.Increment = new decimal(0.01);
+
+            trackBar1.Value = (int)(HSVColor.H / 360 * 255);
+            trackBar2.Value = (int)(HSVColor.S * 255);
+            trackBar3.Value = (int)(HSVColor.V * 255);
+            numericUpDown1.Value = (decimal)(HSVColor.H);
+            numericUpDown2.Value = (decimal)(HSVColor.S);
+            numericUpDown3.Value = (decimal)(HSVColor.V);
+
+            setting_tb_and_nup = false;
+
+            SetHSVLabels();
         }
 
         private void CreateYCbCrLayout()
@@ -606,7 +691,7 @@ namespace GK3
             numericUpDown4.Value = (decimal)CmykColor.K;
 
 
-            SetCMYKLabels(CmykColor);
+            SetCMYKLabels();
             //numericUpDown1_ValueChanged(null,null);
 
         }
@@ -628,7 +713,7 @@ namespace GK3
             numericUpDown1.Increment = 1;
             numericUpDown2.Increment = 1;
             numericUpDown3.Increment = 1;
-            
+
 
             numericUpDown1.Value = current_color.R;
             numericUpDown2.Value = current_color.G;
@@ -671,14 +756,6 @@ namespace GK3
             SetLabLabels();
         }
 
-        private void SetCMYKLabels(CMYK cmykColor)
-        {
-            label_CMYK_C.Text = "C: " + cmykColor.C.ToString("0.000");
-            label_CMYK_M.Text = "M: " + cmykColor.M.ToString("0.000");
-            label_CMYK_Y.Text = "Y: " + cmykColor.Y.ToString("0.000");
-            label_CMYK_K.Text = "K: " + cmykColor.K.ToString("0.000");
-        }
-
         private void SetCMYKLabels()
         {
             CMYK cmykColor = new CMYK(current_color);
@@ -710,12 +787,20 @@ namespace GK3
 
         private void SetHSLLabels()
         {
-            //throw new NotImplementedException();
+            HSL hslColor = new HSL(current_color);
+
+            label_HSL_H.Text = "H: " + (int)hslColor.H;
+            label_HSL_S.Text = "S: " + hslColor.S.ToString("0.000");
+            label_HSL_L.Text = "L: " + hslColor.L.ToString("0.000");
         }
 
         private void SetHSVLabels()
         {
-            //throw new NotImplementedException();
+            HSV hsvColor = new HSV(current_color);
+
+            label_HSV_H.Text = "H: " + (int)hsvColor.H;
+            label_HSV_S.Text = "S: " + hsvColor.S.ToString("0.000");
+            label_HSV_V.Text = "V: " + hsvColor.V.ToString("0.000");
         }
 
         private void SetYCbCrLabels()
