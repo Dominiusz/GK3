@@ -119,7 +119,7 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(52, 15);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Maximum = 255;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(208, 56);
@@ -129,7 +129,7 @@
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(52, 71);
-            this.trackBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Maximum = 255;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(208, 56);
@@ -139,7 +139,7 @@
             // trackBar3
             // 
             this.trackBar3.Location = new System.Drawing.Point(52, 127);
-            this.trackBar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Maximum = 255;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(208, 56);
@@ -150,7 +150,7 @@
             // 
             this.numericUpDown1.DecimalPlaces = 3;
             this.numericUpDown1.Location = new System.Drawing.Point(268, 23);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             255,
             0,
@@ -165,7 +165,7 @@
             // 
             this.numericUpDown2.DecimalPlaces = 3;
             this.numericUpDown2.Location = new System.Drawing.Point(268, 71);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             255,
             0,
@@ -180,7 +180,7 @@
             // 
             this.numericUpDown3.DecimalPlaces = 3;
             this.numericUpDown3.Location = new System.Drawing.Point(268, 127);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             255,
             0,
@@ -252,7 +252,7 @@
             this.panel1.Controls.Add(this.label_Lab_L);
             this.panel1.Controls.Add(this.label_Lab);
             this.panel1.Location = new System.Drawing.Point(631, 299);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(201, 288);
             this.panel1.TabIndex = 19;
@@ -305,7 +305,7 @@
             this.panel_YUV.Controls.Add(this.label_YUV_Y);
             this.panel_YUV.Controls.Add(this.label_YUV_title);
             this.panel_YUV.Location = new System.Drawing.Point(422, 299);
-            this.panel_YUV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_YUV.Margin = new System.Windows.Forms.Padding(4);
             this.panel_YUV.Name = "panel_YUV";
             this.panel_YUV.Size = new System.Drawing.Size(201, 288);
             this.panel_YUV.TabIndex = 18;
@@ -358,7 +358,7 @@
             this.panel_XYZ.Controls.Add(this.label_XYZ_X);
             this.panel_XYZ.Controls.Add(this.label_XYZ_title);
             this.panel_XYZ.Location = new System.Drawing.Point(213, 299);
-            this.panel_XYZ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_XYZ.Margin = new System.Windows.Forms.Padding(4);
             this.panel_XYZ.Name = "panel_XYZ";
             this.panel_XYZ.Size = new System.Drawing.Size(201, 288);
             this.panel_XYZ.TabIndex = 17;
@@ -411,7 +411,7 @@
             this.panel_HSL.Controls.Add(this.label_HSL_H);
             this.panel_HSL.Controls.Add(this.label_HSL_title);
             this.panel_HSL.Location = new System.Drawing.Point(4, 299);
-            this.panel_HSL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_HSL.Margin = new System.Windows.Forms.Padding(4);
             this.panel_HSL.Name = "panel_HSL";
             this.panel_HSL.Size = new System.Drawing.Size(201, 288);
             this.panel_HSL.TabIndex = 16;
@@ -464,7 +464,7 @@
             this.panel_HSV.Controls.Add(this.label_HSV_H);
             this.panel_HSV.Controls.Add(this.label_HSV_title);
             this.panel_HSV.Location = new System.Drawing.Point(631, 4);
-            this.panel_HSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_HSV.Margin = new System.Windows.Forms.Padding(4);
             this.panel_HSV.Name = "panel_HSV";
             this.panel_HSV.Size = new System.Drawing.Size(201, 287);
             this.panel_HSV.TabIndex = 14;
@@ -517,7 +517,7 @@
             this.panel_RGB.Controls.Add(this.label_RGB_R);
             this.panel_RGB.Controls.Add(this.label_RGB_title);
             this.panel_RGB.Location = new System.Drawing.Point(4, 4);
-            this.panel_RGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_RGB.Margin = new System.Windows.Forms.Padding(4);
             this.panel_RGB.Name = "panel_RGB";
             this.panel_RGB.Size = new System.Drawing.Size(201, 287);
             this.panel_RGB.TabIndex = 13;
@@ -571,7 +571,7 @@
             this.panel_CMYK.Controls.Add(this.label_CMYK_C);
             this.panel_CMYK.Controls.Add(this.label_CMYK_title);
             this.panel_CMYK.Location = new System.Drawing.Point(213, 4);
-            this.panel_CMYK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_CMYK.Margin = new System.Windows.Forms.Padding(4);
             this.panel_CMYK.Name = "panel_CMYK";
             this.panel_CMYK.Size = new System.Drawing.Size(201, 287);
             this.panel_CMYK.TabIndex = 14;
@@ -634,7 +634,7 @@
             this.panel_YcbCr.Controls.Add(this.label_YCbCr_Y);
             this.panel_YcbCr.Controls.Add(this.label_YCbCr_title);
             this.panel_YcbCr.Location = new System.Drawing.Point(422, 4);
-            this.panel_YcbCr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_YcbCr.Margin = new System.Windows.Forms.Padding(4);
             this.panel_YcbCr.Name = "panel_YcbCr";
             this.panel_YcbCr.Size = new System.Drawing.Size(201, 287);
             this.panel_YcbCr.TabIndex = 15;
@@ -694,9 +694,9 @@
             "YUV",
             "Lab"});
             this.comboBox1.Location = new System.Drawing.Point(232, 11);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(228, 28);
+            this.comboBox1.Size = new System.Drawing.Size(231, 28);
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -727,7 +727,7 @@
             this.panel2.Controls.Add(this.numericUpDown3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(16, 377);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(447, 226);
             this.panel2.TabIndex = 13;
@@ -735,7 +735,7 @@
             // trackBar4
             // 
             this.trackBar4.Location = new System.Drawing.Point(52, 178);
-            this.trackBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Maximum = 255;
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(208, 56);
@@ -756,7 +756,7 @@
             // 
             this.numericUpDown4.DecimalPlaces = 3;
             this.numericUpDown4.Location = new System.Drawing.Point(268, 178);
-            this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             255,
             0,
@@ -777,7 +777,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label_color);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "GK3";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

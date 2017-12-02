@@ -77,7 +77,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            numericUpDown1.Value = (decimal)(trackBar1.Value * 0.9505 / 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -140,7 +144,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            numericUpDown2.Value = (decimal)(trackBar2.Value / 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -206,7 +214,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            numericUpDown3.Value = (decimal)(trackBar3.Value * 1.089 / 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -296,7 +308,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            trackBar1.Value = (int)((double)numericUpDown1.Value / 0.9505 * 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -357,7 +373,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            trackBar2.Value = (int)((double)numericUpDown2.Value * 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -420,7 +440,11 @@ namespace GK3
                         }
                         break;
                     case 5:
-                        CreateXYZLayout();
+                        {
+                            trackBar3.Value = (int)((double)numericUpDown3.Value / 1.089 * 255.0);
+                            current_color = label_color.BackColor = new XYZ((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                     case 6:
                         {
@@ -443,13 +467,6 @@ namespace GK3
             {
                 switch (comboBox1.SelectedIndex)
                 {
-                    case 0:
-                        {
-                            trackBar4.Value = (int)numericUpDown4.Value;
-                            current_color = label_color.BackColor =
-                                Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-                        }
-                        break;
                     case 1:
                         {
                             trackBar4.Value = (int)(numericUpDown4.Value * 255);
@@ -458,12 +475,6 @@ namespace GK3
                                     (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
                             SetCMYKLabels();
                         }
-                        break;
-                    case 4:
-                        CreateHSLLayout();
-                        break;
-                    case 5:
-                        CreateXYZLayout();
                         break;
                     case 7:
                         CreateLabLayout();
@@ -545,12 +556,43 @@ namespace GK3
             numericUpDown1.Value = (decimal)YUV_color.Y;
             numericUpDown2.Value = (decimal)YUV_color.U;
             numericUpDown3.Value = (decimal)YUV_color.V;
+            SetDecimalPlaces(3);
+            SetYUVLabels();
 
         }
 
         private void CreateXYZLayout()
         {
-            //throw new NotImplementedException();
+            Hide4Elements();
+            label1.Text = "X";
+            label2.Text = "Y";
+            label3.Text = "Z";
+
+            XYZ XYZColor = new XYZ(current_color);
+
+            setting_tb_and_nup = true;
+
+            numericUpDown1.Maximum = (decimal)0.9505;
+            numericUpDown2.Maximum = 1;
+            numericUpDown3.Maximum = (decimal)1.089;
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Minimum = 0;
+            numericUpDown3.Minimum = 0;
+            numericUpDown1.Increment = new decimal(0.01);
+            numericUpDown2.Increment = new decimal(0.01);
+            numericUpDown3.Increment = new decimal(0.01);
+
+            trackBar1.Value = (int)(XYZColor.X / 0.9505 * 255);
+            trackBar2.Value = (int)(XYZColor.Y * 255);
+            trackBar3.Value = (int)(XYZColor.Z / 1.089 * 255);
+
+            numericUpDown1.Value = (decimal)(XYZColor.X);
+            numericUpDown2.Value = (decimal)(XYZColor.Y);
+            numericUpDown3.Value = (decimal)(XYZColor.Z);
+            setting_tb_and_nup = false;
+            SetDecimalPlaces(3);
+            SetXYZLabels();
+
         }
 
         private void CreateHSLLayout()
@@ -582,7 +624,7 @@ namespace GK3
             numericUpDown3.Value = (decimal)(HSLColor.L);
 
             setting_tb_and_nup = false;
-
+            SetDecimalPlaces(3);
             SetHSLLabels();
         }
 
@@ -614,7 +656,7 @@ namespace GK3
             numericUpDown3.Value = (decimal)(HSVColor.V);
 
             setting_tb_and_nup = false;
-
+            SetDecimalPlaces(3);
             SetHSVLabels();
         }
 
@@ -647,7 +689,7 @@ namespace GK3
             numericUpDown3.Value = (decimal)YCbCrColor.Cr;
 
             setting_tb_and_nup = false;
-
+            SetDecimalPlaces(3);
             SetYCbCrLabels();
 
         }
@@ -690,6 +732,7 @@ namespace GK3
             numericUpDown3.Value = (decimal)CmykColor.Y;
             numericUpDown4.Value = (decimal)CmykColor.K;
 
+            SetDecimalPlaces(3);
 
             SetCMYKLabels();
             //numericUpDown1_ValueChanged(null,null);
@@ -714,10 +757,11 @@ namespace GK3
             numericUpDown2.Increment = 1;
             numericUpDown3.Increment = 1;
 
-
             numericUpDown1.Value = current_color.R;
             numericUpDown2.Value = current_color.G;
             numericUpDown3.Value = current_color.B;
+
+            SetDecimalPlaces(0);
 
             trackBar1.Value = current_color.R;
             trackBar2.Value = current_color.G;
@@ -725,6 +769,14 @@ namespace GK3
             setting_tb_and_nup = false;
 
             Hide4Elements();
+        }
+
+        private void SetDecimalPlaces(int v)
+        {
+            numericUpDown1.DecimalPlaces = v;
+            numericUpDown2.DecimalPlaces = v;
+            numericUpDown3.DecimalPlaces = v;
+            numericUpDown4.DecimalPlaces = v;
         }
         #endregion
 
@@ -782,7 +834,11 @@ namespace GK3
 
         private void SetXYZLabels()
         {
-            //throw new NotImplementedException();
+            XYZ xyzColor = new XYZ(current_color);
+
+            label_XYZ_X.Text = "X: " + xyzColor.X.ToString("0.000");
+            label_XYZ_Y.Text = "Y: " + xyzColor.Y.ToString("0.000");
+            label_XYZ_Z.Text = "Z: " + xyzColor.Z.ToString("0.000");
         }
 
         private void SetHSLLabels()

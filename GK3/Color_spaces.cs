@@ -259,7 +259,7 @@ namespace GK3
                 }
                 else if (C_max == r)
                 {
-                    h = 60 * (((g - b) / delta+6)% 6);
+                    h = 60 * (((g - b) / delta + 6) % 6);
                 }
                 else if (C_max == g)
                 {
@@ -287,7 +287,7 @@ namespace GK3
                 double X = C * (1 - Math.Abs((h / 60) % 2 - 1));
                 double m = V - C;
 
-                double r=0, g=0, b = 0;
+                double r = 0, g = 0, b = 0;
 
                 if (0 <= h && h < 60)
                 {
@@ -320,7 +320,73 @@ namespace GK3
                     b = X;
                 }
 
-                return Color.FromArgb((int) ((r + m) * 255), (int)((g + m) * 255), (int)((b + m) * 255));
+                return Color.FromArgb((int)((r + m) * 255), (int)((g + m) * 255), (int)((b + m) * 255));
+
+            }
+        }
+
+        public class XYZ : Color_space
+        {
+            private double x;
+            private double y;
+            private double z;
+
+            public double X => x;
+
+            public double Y => y;
+
+            public double Z => z;
+
+            public XYZ(double x, double y, double z)
+            {
+                if (x < 0 || y < 0 || z < 0 || x > 0.9505 || y > 1 || z > 1.089)
+                    throw new ArgumentException();
+
+                this.x = x;
+                this.y = y;
+                this.z = z;
+            }
+
+            public XYZ(Color RGB_color)
+            {
+                double rLinear = RGB_color.R / 255.0;
+                double gLinear = RGB_color.G / 255.0;
+                double bLinear = RGB_color.B / 255.0;
+
+                double r = (rLinear > 0.04045) ? Math.Pow((rLinear + 0.055) / (1 + 0.055), 2.2) : (rLinear / 12.92);
+                double g = (gLinear > 0.04045) ? Math.Pow((gLinear + 0.055) / (1 + 0.055), 2.2) : (gLinear / 12.92);
+                double b = (bLinear > 0.04045) ? Math.Pow((bLinear + 0.055) / (1 + 0.055), 2.2) : (bLinear / 12.92);
+
+                x = r * 0.4124 + g * 0.3576 + b * 0.1805;
+                y = r * 0.2126 + g * 0.7152 + b * 0.0722;
+                z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+
+            }
+
+            public override Color ToRGB()
+            {
+                double[] Clinear = new double[3];
+                Clinear[0] = x * 3.2410 - y * 1.5374 - z * 0.4986; // red
+                Clinear[1] = -x * 0.9692 + y * 1.8760 - z * 0.0416; // green
+                Clinear[2] = x * 0.0556 - y * 0.2040 + z * 1.0570; // blue
+
+                for (int i = 0; i < 3; i++)
+                {
+                    Clinear[i] = (Clinear[i] <= 0.0031308) ? 12.92 * Clinear[i] : (1 + 0.055) * Math.Pow(Clinear[i], (1.0 / 2.4)) - 0.055;
+                }
+
+                int r = Convert.ToInt32(Clinear[0] * 255.0);
+                int g = Convert.ToInt32(Clinear[1] * 255.0);
+                int b = Convert.ToInt32(Clinear[2] * 255.0);
+
+                if (r > 255) r = 255;
+                if (g > 255) g = 255;
+                if (b > 255) b = 255;
+                if (r < 0) r = 0;
+                if (g < 0) g = 0;
+                if (b < 0) b = 0;
+
+                return Color.FromArgb(r, g, b);
 
             }
         }
@@ -329,7 +395,7 @@ namespace GK3
         {
             public CMYK(double c, double m, double y, double k)
             {
-                if(c<0||c>1||m<0||m>1||y<0||y>1||k<0||k>1)
+                if (c < 0 || c > 1 || m < 0 || m > 1 || y < 0 || y > 1 || k < 0 || k > 1)
                     throw new ArgumentOutOfRangeException();
 
                 this.c = c;
@@ -339,9 +405,9 @@ namespace GK3
             }
 
             private double c;
-            
+
             private double m;
-           
+
             private double y;
 
             private double k;
