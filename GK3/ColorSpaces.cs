@@ -20,7 +20,6 @@ namespace GK3
             private double cb;
             private double cr;
 
-
             public double Y => y;
 
             public double Cb => cb;
@@ -324,7 +323,6 @@ namespace GK3
                 }
 
                 return Color.FromArgb((int)((r + m) * 255), (int)((g + m) * 255), (int)((b + m) * 255));
-
             }
         }
 
@@ -390,7 +388,6 @@ namespace GK3
                 if (b < 0) b = 0;
 
                 return Color.FromArgb(r, g, b);
-
             }
         }
 
@@ -525,7 +522,6 @@ namespace GK3
                 b1 = Math.Max(0, Math.Min(1, b1)) * 255;
 
                 return Color.FromArgb((int)r, (int)g, (int)b1);
-
             }
         }
     }

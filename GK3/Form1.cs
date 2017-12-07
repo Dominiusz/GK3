@@ -267,6 +267,7 @@ namespace GK3
                 SetLabels();
             }
         }
+
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             if (!setting_tb_and_nup)
@@ -336,6 +337,7 @@ namespace GK3
                 SetLabels();
             }
         }
+
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (!setting_tb_and_nup)
@@ -476,6 +478,7 @@ namespace GK3
                 SetLabels();
             }
         }
+
         private void numericUpDown4_ValueChanged(object sender, EventArgs e)
         {
             if (!setting_tb_and_nup)
@@ -495,6 +498,7 @@ namespace GK3
                 SetLabels();
             }
         }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboBox1.SelectedIndex)
@@ -779,8 +783,6 @@ namespace GK3
             SetDecimalPlaces(3);
 
             SetCMYKLabels();
-            //numericUpDown1_ValueChanged(null,null);
-
         }
 
         private void CreateRGBLayout()
@@ -822,7 +824,7 @@ namespace GK3
             numericUpDown3.DecimalPlaces = v;
             numericUpDown4.DecimalPlaces = v;
         }
-        #endregion
+        
 
         private void Hide4Elements()
         {
@@ -837,6 +839,7 @@ namespace GK3
             numericUpDown4.Visible = true;
             label4.Visible = true;
         }
+        #endregion
 
         #region SettingLabels
 
