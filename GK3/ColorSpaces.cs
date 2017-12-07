@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace GK3
 {
-    class Color_spaces
+    class ColorSpaces
     {
-        public abstract class Color_space
+        public abstract class ColorSpace
         {
             public abstract Color ToRGB();
         }
 
-        public class YCbCr : Color_space
+        public class YCbCr : ColorSpace
         {
             private double y;
             private double cb;
@@ -68,7 +68,7 @@ namespace GK3
             }
         }
 
-        public class YUV : Color_space
+        public class YUV : ColorSpace
         {
             private double y;
             private double u;
@@ -79,6 +79,9 @@ namespace GK3
 
             public YUV(double y, double u, double v)
             {
+                if (y < 0 || y > 1 || v < -V_max || v > V_max || u < -U_max || u > U_max)
+                    throw new ArgumentOutOfRangeException();
+
                 this.y = y;
                 this.u = u;
                 this.v = v;
@@ -118,7 +121,7 @@ namespace GK3
             }
         }
 
-        public class HSL : Color_space
+        public class HSL : ColorSpace
         {
             private double h;
             private double s;
@@ -222,7 +225,7 @@ namespace GK3
             }
         }
 
-        public class HSV : Color_space
+        public class HSV : ColorSpace
         {
             private double h;
             private double s;
@@ -325,7 +328,7 @@ namespace GK3
             }
         }
 
-        public class XYZ : Color_space
+        public class XYZ : ColorSpace
         {
             private double x;
             private double y;
@@ -340,7 +343,7 @@ namespace GK3
             public XYZ(double x, double y, double z)
             {
                 if (x < 0 || y < 0 || z < 0 || x > 0.9505 || y > 1 || z > 1.089)
-                    throw new ArgumentException();
+                    throw new ArgumentOutOfRangeException();
 
                 this.x = x;
                 this.y = y;
@@ -391,7 +394,7 @@ namespace GK3
             }
         }
 
-        public class CMYK : Color_space
+        public class CMYK : ColorSpace
         {
             public CMYK(double c, double m, double y, double k)
             {
@@ -445,6 +448,84 @@ namespace GK3
                     m = (1 - g - k) / (1 - k);
                     y = (1 - b - k) / (1 - k);
                 }
+            }
+        }
+
+        public class Lab : ColorSpace
+        {
+            private double l;
+            private double a;
+            private double b;
+
+            public double L => l;
+
+            public double A => a;
+
+            public double B => b;
+
+            public Lab(double l, double a, double b)
+            {
+                if (l < 0 || l > 100 || a > 98 || a < -86 || b > 94 || b < -107)
+                    throw new ArgumentOutOfRangeException();
+
+                this.l = l;
+                this.a = a;
+                this.b = b;
+            }
+
+            public Lab(Color RGB_color)
+            {
+
+                double r = RGB_color.R / 255.0;
+                double g = RGB_color.G / 255.0;
+                double b1 = RGB_color.B / 255.0;
+                double x, y, z;
+
+                r = (r > 0.04045) ? Math.Pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+                g = (g > 0.04045) ? Math.Pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+                b1 = (b1 > 0.04045) ? Math.Pow((b1 + 0.055) / 1.055, 2.4) : b1 / 12.92;
+
+                x = (r * 0.4124 + g * 0.3576 + b1 * 0.1805) / 0.95047;
+                y = (r * 0.2126 + g * 0.7152 + b1 * 0.0722) / 1.00000;
+                z = (r * 0.0193 + g * 0.1192 + b1 * 0.9505) / 1.08883;
+
+                x = (x > 0.008856) ? Math.Pow(x, 1 / 3.0) : (7.787 * x) + 16 / 116.0;
+                y = (y > 0.008856) ? Math.Pow(y, 1 / 3.0) : (7.787 * y) + 16 / 116.0;
+                z = (z > 0.008856) ? Math.Pow(z, 1 / 3.0) : (7.787 * z) + 16 / 116.0;
+
+                l = 116 * y - 16;
+                a = 500 * (x - y);
+                b = 200 * (y - z);
+
+                a = Math.Min(98, Math.Max(a, -86));
+                b = Math.Min(94, Math.Max(b, -107));
+            }
+
+            public override Color ToRGB()
+            {
+                double y = (l + 16) / 116;
+                double x = a / (500 + y);
+                double z = y - b / 500;
+                double r, g, b1;
+
+                x = 0.95047 * ((x * x * x > 0.008856) ? x * x * x : (x - 16 / 116.0) / 7.787);
+                y = 1.00000 * ((y * y * y > 0.008856) ? y * y * y : (y - 16 / 116.0) / 7.787);
+                z = 1.08883 * ((z * z * z > 0.008856) ? z * z * z : (z - 16 / 116.0) / 7.787);
+
+                r = x * 3.2406 + y * -1.5372 + z * -0.4986;
+                g = x * -0.9689 + y * 1.8758 + z * 0.0415;
+                b1 = x * 0.0557 + y * -0.2040 + z * 1.0570;
+
+                r = (r > 0.0031308) ? (1.055 * Math.Pow(r, 1 / 2.4) - 0.055) : 12.92 * r;
+                g = (g > 0.0031308) ? (1.055 * Math.Pow(g, 1 / 2.4) - 0.055) : 12.92 * g;
+                b1 = (b1 > 0.0031308) ? (1.055 * Math.Pow(b1, 1 / 2.4) - 0.055) : 12.92 * b1;
+
+                r = Math.Max(0, Math.Min(1, r)) * 255;
+                g = Math.Max(0, Math.Min(1, g)) * 255;
+                b1 = Math.Max(0, Math.Min(1, b1)) * 255;
+
+                return Color.FromArgb((int)r, (int)g, (int)b1);
+
             }
         }
     }

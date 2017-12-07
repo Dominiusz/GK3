@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static GK3.Color_spaces;
+using static GK3.ColorSpaces;
 
 namespace GK3
 {
@@ -92,7 +92,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            numericUpDown1.Value = (decimal)(trackBar1.Value / 255.0 * 100.0);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                 }
                 SetLabels();
@@ -159,7 +163,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            numericUpDown2.Value = (decimal)(trackBar2.Value / 255.0 * (98 + 86.0) - 86);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                 }
                 SetLabels();
@@ -229,7 +237,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            numericUpDown3.Value = (decimal)(trackBar3.Value / 255.0 * (107 + 94.0) - 107);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                 }
                 SetLabels();
@@ -250,15 +262,6 @@ namespace GK3
                                     (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
                             SetCMYKLabels();
                         }
-                        break;
-                    case 4:
-                        CreateHSLLayout();
-                        break;
-                    case 5:
-                        CreateXYZLayout();
-                        break;
-                    case 7:
-                        CreateLabLayout();
                         break;
                 }
                 SetLabels();
@@ -323,7 +326,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            trackBar1.Value = (int)(numericUpDown1.Value / 100 * 255);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                 }
                 SetLabels();
@@ -388,7 +395,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            trackBar2.Value = (int)(((double)(numericUpDown2.Value) + 86.0) / (98 + 86) * 255);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
 
                 }
@@ -455,7 +466,11 @@ namespace GK3
                         }
                         break;
                     case 7:
-                        CreateLabLayout();
+                        {
+                            trackBar3.Value = (int)((double)(numericUpDown3.Value) + 107.0 / (94 + 107) * 255);
+                            current_color = label_color.BackColor = new Lab((double)numericUpDown1.Value, (double)numericUpDown2.Value,
+                                (double)numericUpDown3.Value).ToRGB();
+                        }
                         break;
                 }
                 SetLabels();
@@ -475,9 +490,6 @@ namespace GK3
                                     (double)numericUpDown3.Value, (double)numericUpDown4.Value).ToRGB();
                             SetCMYKLabels();
                         }
-                        break;
-                    case 7:
-                        CreateLabLayout();
                         break;
                 }
                 SetLabels();
@@ -519,7 +531,39 @@ namespace GK3
 
         private void CreateLabLayout()
         {
-            //throw new NotImplementedException();
+            Hide4Elements();
+
+            Lab Lab_color = new Lab(current_color);
+
+            label1.Text = "L";
+            label2.Text = "a";
+            label3.Text = "b";
+            setting_tb_and_nup = true;
+
+            numericUpDown1.Maximum = 100;
+            numericUpDown2.Maximum = 98;
+            numericUpDown3.Maximum = 94;
+
+            numericUpDown1.Minimum = 0;
+            numericUpDown2.Minimum = -86;
+            numericUpDown3.Minimum = -107;
+
+            numericUpDown1.Increment = 1;
+            numericUpDown2.Increment = 1;
+            numericUpDown3.Increment = 1;
+
+            trackBar1.Value = (int)(Lab_color.L / 100 * 255);
+            trackBar2.Value = (int)((Lab_color.A + 86) / (98.0 + 86) * 255);
+            trackBar3.Value = (int)((Lab_color.B + 107) / (107.0 + 94) * 255);
+
+            numericUpDown1.Value = (decimal)Lab_color.L;
+            numericUpDown2.Value = (decimal)Lab_color.A;
+            numericUpDown3.Value = (decimal)Lab_color.B;
+            setting_tb_and_nup = false;
+
+            SetDecimalPlaces(2);
+            SetLabLabels();
+
         }
 
         private void CreateYUVLayout()
@@ -548,14 +592,14 @@ namespace GK3
 
 
             trackBar1.Value = (int)(YUV_color.Y * 255);
-            trackBar2.Value = (int)((YUV_color.U + YUV.U_max) / 2 * YUV.U_max * 255);
-            trackBar3.Value = (int)((YUV_color.V + YUV.V_max) / 2 * YUV.V_max * 255);
-
-            setting_tb_and_nup = false;
+            trackBar2.Value = (int)((YUV_color.U + YUV.U_max) / (2 * YUV.U_max) * 255);
+            trackBar3.Value = (int)((YUV_color.V + YUV.V_max) / (2 * YUV.V_max) * 255);
 
             numericUpDown1.Value = (decimal)YUV_color.Y;
             numericUpDown2.Value = (decimal)YUV_color.U;
             numericUpDown3.Value = (decimal)YUV_color.V;
+            setting_tb_and_nup = false;
+
             SetDecimalPlaces(3);
             SetYUVLabels();
 
@@ -820,7 +864,12 @@ namespace GK3
 
         private void SetLabLabels()
         {
-            //throw new NotImplementedException();
+            Lab LabColor = new Lab(current_color);
+
+            label_Lab_L.Text = "L: " + LabColor.L.ToString("0.000");
+            label_Lab_a.Text = "a: " + LabColor.A.ToString("0.000");
+            label_Lab_b.Text = "b: " + LabColor.B.ToString("0.000");
+
         }
 
         private void SetYUVLabels()
